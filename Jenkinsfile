@@ -61,12 +61,12 @@ pipeline {
         archiveArtifacts '**/*.apk'
 
         // Upload the APK to Google Play
-        androidApkUpload googleCredentialsId: 'Google Play', apkFilesPattern: '**/*-release.apk', trackName: 'beta'
+        androidApkUpload googleCredentialsId: 'Google Play', apkFilesPattern: '**/*-release*.apk', trackName: 'beta'
       }
       post {
         success {
           // Notify if the upload succeeded
-          mail to: 'beta-testers@example.com', subject: 'New build available!', body: 'Check it out!'
+          mail to: 'tag.ananthraj@gmail.com', subject: 'New build available!', body: 'Check it out!'
         }
       }
     }
@@ -74,7 +74,7 @@ pipeline {
   post {
     failure {
       // Notify developer team of the failure
-      mail to: 'android-devs@example.com', subject: 'Oops!', body: "Build ${env.BUILD_NUMBER} failed; ${env.BUILD_URL}"
+      mail to: 'tag.ananthraj@gmail.com', subject: 'Oops!', body: "Build ${env.BUILD_NUMBER} failed; ${env.BUILD_URL}"
     }
   }
 }
